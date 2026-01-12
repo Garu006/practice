@@ -1,10 +1,8 @@
-// CREAR LA SOLUCION PARA ESTO
-
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"math"
 	"time"
 )
 
@@ -12,33 +10,45 @@ func SimularMovimiento(
 	startRow, startCol int,
 	instrucciones string,
 	height, width int,
-) ResultadoMovimiento{
+) (ResultadoMovimiento, error){
 	fila := startRow
 	columna := startCol
 	salioDelMapa := false
 	pasosRealizados := 0
 
+	if height <= 0 || width <= 0 {
+		return ResultadoMovimiento{}, fmt.Errorf("dimensiones del mapa invalidas")
+	}
+	if startRow < 0 || startRow >= height || startCol < 0 || startCol >= width {
+		return ResultadoMovimiento{}, fmt.Errorf("posicion inicial fuera del mapa")
+	}
+
 	for _, instruccion := range instrucciones {
-		if salioDelMapa {
-			break
+		filaAnterior := fila
+		columnaAnterior := columna
+
+		if instruccion != 'U' && instruccion != 'D' && instruccion != 'L' && instruccion != 'R' {
+			return ResultadoMovimiento{}, fmt.Errorf("instruccion invalida: %c", instruccion)
 		}
+
 		switch instruccion {
 		case 'U':
-			fila -= 1
+			fila--
 		case 'D':
-			fila += 1
+			fila++
 		case 'L':
-			columna -= 1
+			columna--
 		case 'R':
-			columna += 1
+			columna++
 		}
-		pasosRealizados += 1
+		pasosRealizados++
 
 		if fila < 0 || fila >= height || columna < 0 || columna >= width {
+			// Volver al ultimo estado valido
+			fila = filaAnterior
+			columna = columnaAnterior
 			salioDelMapa = true
-			// Ajustar fila y columna para que estén dentro del mapa
-			fila = int(math.Max(0, math.Min(float64(fila), float64(height-1))))
-			columna = int(math.Max(0, math.Min(float64(columna), float64(width-1))))
+			break
 		}
 	}
 	return ResultadoMovimiento {
@@ -46,7 +56,7 @@ func SimularMovimiento(
 		columnaFinal: columna,
 		salioDelMapa: salioDelMapa,
 		pasosRealizados: pasosRealizados,
-	}
+	}, nil
 }
 
 // ResultadoMovimiento debe contener: fila final, columna final, salió del mapa (bool), pasos realizados
@@ -55,7 +65,6 @@ func SimularMovimiento(
 // D: fila +1
 // L: columna -1
 // R: columna +1
-
 type ResultadoMovimiento struct {
 	filaFinal int
 	columnaFinal int
@@ -64,25 +73,53 @@ type ResultadoMovimiento struct {
 }
 
 func main() {
-	resultado := SimularMovimiento(2, 3, "UDLR", 5, 5)
+	resultado, err := SimularMovimiento(2, 3, "UDLR", 5, 5)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return 
+	}
 	fmt.Println(resultado)
 
-	resultado2 := SimularMovimiento(0, 0, "UUUU", 3, 3)
+	resultado2, err := SimularMovimiento(0, 0, "UUUU", 3, 3)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
 	fmt.Println(resultado2)
 
-	resultado3 := SimularMovimiento(1, 1, "RRDDLLUU", 4, 4)
+	resultado3, err := SimularMovimiento(1, 1, "RRDDLLUU", 4, 4)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
 	fmt.Println(resultado3)
 
-	resultado4 := SimularMovimiento(3, 3, "LLLLDDRRUU", 5, 5)
+	resultado4, err := SimularMovimiento(3, 3, "LLLLDDRRUU", 5, 5)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
 	fmt.Println(resultado4)
 
-	resultado5 := SimularMovimiento(0, 0, "RRRRDDDDLLLLUUUU", 4, 4)
+	resultado5, err := SimularMovimiento(0, 0, "RRRRDDDDLLLLUUUU", 4, 4)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
 	fmt.Println(resultado5)
 
-	resultado6 := SimularMovimiento(2, 2, "UUUURRRRDDDDLLLL", 5, 5)
+	resultado6, err := SimularMovimiento(2, 2, "UUUURRRRDDDDLLLL", 5, 5)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
 	fmt.Println(resultado6)
 
-	resultado7 := SimularMovimiento(1, 1, "UDUDUDUDUD", 3, 3)
+	resultado7, err := SimularMovimiento(1, 1, "UDUDUDUDUD", 3, 3)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
 	fmt.Println(resultado7)
 
 	time.Sleep(1 * time.Second) // Pausa para ver los resultados antes de que termine el programa
