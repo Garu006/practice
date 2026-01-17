@@ -3,7 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"time"
+	"os"
+	"strings"
 )
 
 func SimularMovimiento(
@@ -73,54 +74,34 @@ type ResultadoMovimiento struct {
 }
 
 func main() {
-	resultado, err := SimularMovimiento(2, 3, "UDLR", 5, 5)
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return 
-	}
-	fmt.Println(resultado)
+	reader := bufio.NewReader(os.Stdin)
 
-	resultado2, err := SimularMovimiento(0, 0, "UUUU", 3, 3)
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
-	fmt.Println(resultado2)
+	var height, width int
+	var startCol, startRow int
+	var instrucciones string
 
-	resultado3, err := SimularMovimiento(1, 1, "RRDDLLUU", 4, 4)
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
-	fmt.Println(resultado3)
+	fmt.Print("Ingrese el alto del mapa: ")
+	fmt.Scanln(&height)
+	fmt.Print("Ingrese el ancho del mapa: ")
+	fmt.Scanln(&width)
+	fmt.Print("Ingrese la fila inicial: ")
+	fmt.Scanln(&startRow)
+	fmt.Print("Ingrese la columna inicial: ")
+	fmt.Scanln(&startCol)
+	fmt.Print("Ingrese las instrucciones (U, D, L, R): ")
+	instrucciones, _ = reader.ReadString('\n')
+	instrucciones = strings.TrimSpace(instrucciones)
 
-	resultado4, err := SimularMovimiento(3, 3, "LLLLDDRRUU", 5, 5)
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
-	fmt.Println(resultado4)
-
-	resultado5, err := SimularMovimiento(0, 0, "RRRRDDDDLLLLUUUU", 4, 4)
+	// llamar a la funcion con los datos ingresados
+	resultado, err := SimularMovimiento(startRow, startCol, instrucciones, height, width)
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return
 	}
-	fmt.Println(resultado5)
 
-	resultado6, err := SimularMovimiento(2, 2, "UUUURRRRDDDDLLLL", 5, 5)
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
-	fmt.Println(resultado6)
-
-	resultado7, err := SimularMovimiento(1, 1, "UDUDUDUDUD", 3, 3)
-	if err != nil {
-		fmt.Println("Error: ", err)
-		return
-	}
-	fmt.Println(resultado7)
-
-	time.Sleep(1 * time.Second) // Pausa para ver los resultados antes de que termine el programa
+	fmt.Println("Resultado del movimiento: ")
+	fmt.Println("Fila final: ", resultado.filaFinal)
+	fmt.Println("Columna final: ", resultado.columnaFinal)
+	fmt.Println("Salió del mapa: ", resultado.salioDelMapa)
+	fmt.Println("Pasos realizados: ", resultado.pasosRealizados)
 }
