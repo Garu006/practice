@@ -5,16 +5,16 @@
 }
 
 body {
-    font-family : 'Times New Roman', Times, serif;
-    background-color: #f4f6f8;
-    color : #1f2937;
+    font-family : Georgia, 'Times New Roman', serif;
+    background-color: #ede6d8;
+    color : #4b463f;
     line-height: 1.6;
     padding : 20px;
 }
 
 header {
-    background-color: #1e3a8a;
-    color: white;
+    background-color: #6f7f5f;
+    color: #f8f4ec;
     text-align: center;
     padding: 50px 20px;
     border-radius: 15px;
@@ -31,15 +31,18 @@ header p {
 }
 
 section {
-    background-color: white;
+    background-color: #f7f1e5;
     padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    border: 1px solid #ddd2db;
 }
 
 section h2 {
-    color: #1e3a9a;
+    color: #5f6f52;
     margin-bottom: 15px;
     font-size: 1.5rem;
-    border-bottom: 2px solid #dbeafe;
+    border-bottom: 2px solid #cbbfa8;
     padding-bottom: 8px;
 }
 
@@ -49,7 +52,7 @@ section p {
 }
 
 a {
-    color: #1e3a8a;
+    color: #5f6f52;
     text-decoration: none;
     font-weight: bold;
 }
@@ -61,4 +64,33 @@ a:hover {
 .container {
     max-width: 1000px;
     margin: 0 auto;
+}
+
+.logro {
+    background-color: #efe7da;
+    padding: 20px;
+    border-radius: 14px;
+    margin-top: 18px;
+    border: 1px solid #d8ccd5;
+}
+
+.logro h3 {
+    color: #6b7a5c;
+    margin-bottom: 10px;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+}
+
+nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+nav a {
+    margin: 0 12px;
 }
