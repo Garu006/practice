@@ -30,3 +30,14 @@ section.forEach(section => {
     observer.observe(section);
     section.classList.add("hidden");
 });
+
+// navbar dinamico
+const nav = document.querySelector("nav");
+
+window.addEventListener("Scroll", () => {
+    if (window.scrollY > 50) {
+        nav.style.backgroundColor = "#d6cbb7";
+    } else {
+        nav.style.backgroundColor = "transparent";
+    }
+});
