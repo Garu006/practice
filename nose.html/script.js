@@ -1,20 +1,3 @@
-//scroll suave para los enlaces del menú de navegación
-
-document.querySelectorAll("nav a").forEach(link => {
-    link.addEventListener("click", function(e) {
-        e.preventDefault();
-
-        const targetId = document.querySelector(this.getAttribute("href"));
-        const targeetElement = document.querySelector(targetId);
-
-        targetId.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-            inline: "nearest",
-        });
-    });
-});
-
 //Animación al hacer scroll
 const sectioon = document.querySelectorAll("Section");
 
@@ -39,5 +22,19 @@ window.addEventListener("Scroll", () => {
         nav.style.backgroundColor = "#d6cbb7";
     } else {
         nav.style.backgroundColor = "transparent";
+    }
+});
+
+// modo oscuro
+const themeButton = document.getElementById("theme-toogle");
+
+themeButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    
+    if (document.body.classList.contains("dark-mode")) {
+        themeButton.textContent = "Modo Claro";
+
+    } else {
+        themeButton.textContent = "Modo Oscuro";
     }
 });
