@@ -1,15 +1,15 @@
 * {
-    margin : 0;
-    padding : 0;
-    box-sizing : border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family : Georgia, 'Times New Roman', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     background-color: #ede6d8;
-    color : #4b463f;
+    color: #4b463f;
     line-height: 1.6;
-    padding : 20px;
+    padding: 20px;
 }
 
 header {
@@ -108,7 +108,7 @@ html {
 }
 
 .show {
-    opacity: 0;
+    opacity: 1;
     transform: translateY(0);
 }
 
@@ -128,51 +128,51 @@ html {
     background-color: #5f6f52;
 }
 
-body.dark.mode {
+body.dark-mode {
     background-color: #1f241b;
     color: #f4efe4;
 }
 
-body.dark.mode header {
+body.dark-mode header {
     background-color: #3f4b36;
     color: #f8f4ec;
 }
 
-body.dark.mode section {
+body.dark-mode section {
     background-color: #2b3026;
     border-color: #5f6f52;
 }
 
-body.dark.mode section h2 {
+body.dark-mode section h2 {
     color: #d8ccb5;
     border-bottom-color: #7c8b6b;
 }
 
-body.dark.mode section p,
-body.dark.mode li {
+body.dark-mode section p,
+body.dark-mode li {
     color: #f4efe4;
 }
 
-body.dark.mode a {
+body.dark-mode a {
     color: #d8ccb5;
 }
 
-body.dark.mode .logro,
-body.dark.mode .proyecto {
+body.dark-mode .logro,
+body.dark-mode .proyecto {
     background-color: #3a4034;
     border-color: #6f7f5f;
 }
 
-body.dark.mode .logro h3,
-body.dark.mode .proyecto h3 {
+body.dark-mode .logro h3,
+body.dark-mode .proyecto h3 {
     color: #e6dccb;
 }
 
-body.dark.mode nav a {
+body.dark-mode nav a {
     color: #d8ccb5;
 }
 
-body.dark.mode #theme-toggle {
+body.dark-mode #theme-toggle {
     background-color: #d8ccb5;
     color: #2b3026;
 }
