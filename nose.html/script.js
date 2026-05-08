@@ -1,21 +1,22 @@
-console.log("Javascript cargado correctamente");
-//Animación al hacer scroll
+console.log("JavaScript cargado correctamente");
+
+// Animación al hacer scroll
 const sections = document.querySelectorAll("section");
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
+            entry.target.classList.add("show");
         }
     });
 });
 
 sections.forEach(section => {
-    observer.observe(section);
     section.classList.add("hidden");
+    observer.observe(section);
 });
 
-// navbar dinamico
+// Navbar dinámico
 const nav = document.querySelector("nav");
 
 window.addEventListener("scroll", () => {
@@ -25,16 +26,24 @@ window.addEventListener("scroll", () => {
         nav.style.backgroundColor = "transparent";
     }
 });
-// modo oscuro
+
+// Modo oscuro
 const themeButton = document.getElementById("theme-toggle");
+
+// Aplicar tema guardado
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    themeButton.textContent = "Modo Claro";
+}
 
 themeButton.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 
     if (document.body.classList.contains("dark-mode")) {
         themeButton.textContent = "Modo Claro";
-
+        localStorage.setItem("theme", "dark");
     } else {
         themeButton.textContent = "Modo Oscuro";
+        localStorage.setItem("theme", "light");
     }
 });
